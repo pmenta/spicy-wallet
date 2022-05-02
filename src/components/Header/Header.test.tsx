@@ -12,8 +12,11 @@ function ThemedHeader() {
   );
 }
 
-test('should render header', () => {
-  const { getByText } = render(<ThemedHeader />);
+describe('should render header', () => {
+  it('should render title', () => {
+    const { getByText } = render(<ThemedHeader />);
 
-  expect(getByText('spicy')).toBeTruthy();
+    expect(getByText('spicy')).toBeInTheDocument();
+    expect(getByText('Wallet')).toBeInTheDocument();
+  });
 });
