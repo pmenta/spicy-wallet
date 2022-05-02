@@ -6,10 +6,14 @@ import { Input } from '../Input';
 
 import DefaultTheme from '../../assets/styles/themes/default';
 
-function ThemedFormGroup() {
+interface IThemedFormGroupProps {
+  error?: string
+}
+
+function ThemedFormGroup({ error = undefined }: IThemedFormGroupProps) {
   return (
     <ThemeProvider theme={DefaultTheme}>
-      <FormGroup label="Testing form group" error="Error">
+      <FormGroup label="Testing form group" error={error}>
         <Input data-testid="input" />
       </FormGroup>
     </ThemeProvider>
@@ -30,8 +34,14 @@ describe('should render form group', () => {
   });
 
   it('should render error', () => {
-    const { getByText } = render(<ThemedFormGroup />);
+    const { getByText } = render(<ThemedFormGroup error="Error" />);
 
     expect(getByText('Error')).toBeInTheDocument();
+  });
+
+  it('should not render error', () => {
+    const { queryByText } = render(<ThemedFormGroup />);
+
+    expect(queryByText('Error')).not.toBeInTheDocument();
   });
 });
