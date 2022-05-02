@@ -1,7 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
+height: calc(100vh - 250px);
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  span, a {
+    text-align: center;
+    margin-top: 16px;
+  }
+  
 `;
